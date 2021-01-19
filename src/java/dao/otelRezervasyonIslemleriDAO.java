@@ -10,11 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static java.sql.Types.NULL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-import model.OdaListesi;
 import model.RezervasyonListesi;
 
 /**
@@ -49,7 +47,7 @@ public otelRezervasyonIslemleriDAO() {}
 "LEFT JOIN odamanzara e ON e.Id=c.manzara  " +
 "LEFT JOIN odadurum f ON f.Id=a.durum " +
 "WHERE a.Id=?;";   
-private static final String SELECT_KONTROL= "SELECT * FROM musteri WHERE telefon =?;"; 
+    private static final String SELECT_KONTROL= "SELECT * FROM musteri WHERE telefon =?;"; 
     private static final String UPDATE_SQL = "UPDATE rezervasyon set  musteriID=?, odaID=?, baslangicTarihi=?, bitisTarihi=?, durum=?,toplamTutar=?,aktifPasif=? WHERE Id = ?;";
     private static final String INSERT_SQL = "INSERT INTO rezervasyon (Id,musteriID,odaID,baslangicTarihi,bitisTarihi,durum,toplamTutar,aktifPasif,islemTarihi) VALUES(0,?,?,?,?,?,?,1,NOW());";
     private static final String DELETE_SQL = "DELETE FROM rezervasyon WHERE Id = ?;";    
@@ -95,7 +93,7 @@ public List<RezervasyonListesi> otelDurumListe(String tar1,String tar2) {
                 String Duzelt ="<img src='fon/duzelt.png' data-toggle=\"modal\" data-target=\"#modal-kayit\" onclick=\"duzelt("+rs.getInt("Id")+")\" />";
                 String Sil ="<img src='fon/sil.png' onclick=\"kayitSil("+rs.getInt("Id")+")\" />";
                 if (musteriID==0)
-                {ad="-";soyad="-";telefon="-";eposta="-";baslangicTarihi="-";bitisTarihi="-";Duzelt="";Sil="";}                
+                {ad="-";soyad="-";telefon="-";eposta="-";baslangicTarihi="-";bitisTarihi="-";Duzelt="";Sil="";}else{odaID=0;}                
                 if(GUN>0){Sil="";}
                 liste.add(new RezervasyonListesi(Id,musteriID,ad,soyad,telefon,eposta,odaID,odaAdi,tipi,tipadi,fiyat,yetiskin,cocuk,manzara,manzaraAdi,baslangicTarihi,bitisTarihi,toplamTutar,durum,durumAciklama,aktifPasif,Duzelt,Sil,GUN));
 
@@ -228,8 +226,6 @@ public int musteriKontrol(String tel) {
         }
     }
 
-    private boolean isNullOrEmpty(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 }
 

@@ -21,13 +21,6 @@ import model.Parametre;
 public class parametreDAO extends DAO{
 public parametreDAO() {}
     private static final String SELECT_YETKI_KOD1 = "SELECT * FROM parametre WHERE kod1=? ORDER BY aciklama";      
-    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " +
-        " (?, ?, ?);";
-
-    private static final String SELECT_ALL_USERS = "select * from users";
-    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
-    private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";    
-
  
 public List<Parametre> liste(int kod) {
         List<Parametre> parametreListesi = new ArrayList<>();

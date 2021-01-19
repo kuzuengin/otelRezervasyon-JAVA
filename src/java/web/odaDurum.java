@@ -8,15 +8,12 @@ package web;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dao.kullaniciDAO;
 import dao.menu;
 import dao.odaDurumDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -133,10 +130,10 @@ public class odaDurum extends HttpServlet{
             }
             else {
                 odaDurumDAO.odaDurumDuzelt(newOda);
-                sonuc=new kayitjson("Evet","Durum Listesi","Kayıt Düzeltme İşlemi Tamamlanmıştır.");
+                sonuc=new kayitjson("Evet","Oda Durum Listesi","Kayıt Düzeltme İşlemi Tamamlanmıştır.");
             }
         } catch (SQLException ex) {
-            sonuc=new kayitjson("Hayır","Durum Listesi","Kayıt Düzeltme İşlemi Yapılamadı.");
+            sonuc=new kayitjson("Hayır","Oda Durum Listesi","Kayıt Düzeltme İşlemi Yapılamadı.");
         }
         
         response.setContentType("application/json;charset=UTF-8");      

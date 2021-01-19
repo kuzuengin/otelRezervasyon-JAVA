@@ -11,7 +11,6 @@ import com.google.gson.GsonBuilder;
 import dao.menu;
 import dao.odaListesiDAO;
 import dao.otelRezervasyonIslemleriDAO;
-import dao.rezervasyonListesiDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -25,7 +24,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.OdaListesi;
 import model.RezervasyonListesi;
 import model.kayitjson;
 
@@ -151,13 +149,13 @@ public class otelRezervasyonIslemleri extends HttpServlet{
             kayitsil = otelRezervasyonIslemleriDAO.rezervasyonSil(ID);
             if (kayitsil)
             {
-                sonuc=new kayitjson("Evet","Oda Listesi","Silme İşlem Tamamlanmıştır.");
+                sonuc=new kayitjson("Evet","Rezervasyon İşlemleri","Silme İşlem Tamamlanmıştır.");
             }
             else {
-                sonuc=new kayitjson("Hayır","Oda Listesi","Silme İşlem Yapılamadı.");
+                sonuc=new kayitjson("Hayır","Rezervasyon İşlemleri","Silme İşlem Yapılamadı.");
             }
         } catch (SQLException ex) {
-            sonuc=new kayitjson("Hayır","Oda Listesi","Silme İşlem Yapılamadı.");
+            sonuc=new kayitjson("Hayır","Rezervasyon İşlemleri","Silme İşlem Yapılamadı.");
         }
         
         
@@ -182,9 +180,9 @@ public class otelRezervasyonIslemleri extends HttpServlet{
         kayitjson sonuc;
         try {
                 otelRezervasyonIslemleriDAO.rezervasyonDuzelt(list);
-                sonuc=new kayitjson("Evet","Oda Listesi","Kayıt Düzeltme İşlemi Tamamlanmıştır.");
+                sonuc=new kayitjson("Evet","Rezervasyon İşlemleri","Kayıt Düzeltme İşlemi Tamamlanmıştır.");
         } catch (SQLException ex) {
-            sonuc=new kayitjson("Hayır","Oda Listesi","Kayıt Düzeltme İşlemi Yapılamadı.");
+            sonuc=new kayitjson("Hayır","Rezervasyon İşlemleri","Kayıt Düzeltme İşlemi Yapılamadı.");
         }
             response.setContentType("application/json;charset=UTF-8");      
             gson = new GsonBuilder().create();
@@ -196,32 +194,7 @@ public class otelRezervasyonIslemleri extends HttpServlet{
             out.flush();    
                 
     }    
-    private void odaduzelt(HttpServletRequest request, HttpServletResponse response) throws IOException{
-      /*  odaListesiDAO = new odaListesiDAO();
-        int Id = Integer.parseInt(request.getParameter("Id"));
-        String odaAdi = request.getParameter("odaAdi");
-        int tipi = Integer.parseInt(request.getParameter("tipi"));
-        int manzara = Integer.parseInt(request.getParameter("manzara"));
-        int durum = Integer.parseInt(request.getParameter("durum"));
-        OdaListesi odalist = new OdaListesi(Id,odaAdi,tipi,manzara,durum);   
-        boolean kayitvar=false;
-        kayitjson sonuc;
-        try {
-                odaListesiDAO.odaDuzelt(odalist);
-                sonuc=new kayitjson("Evet","Oda Listesi","Kayıt Düzeltme İşlemi Tamamlanmıştır.");
-        } catch (SQLException ex) {
-            sonuc=new kayitjson("Hayır","Oda Listesi","Kayıt Düzeltme İşlemi Yapılamadı.");
-        }
-        
-        response.setContentType("application/json;charset=UTF-8");      
-        gson = new GsonBuilder().create();
-        String userJsonString = gson.toJson(sonuc);
-        PrintWriter out = response.getWriter();
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        out.print(userJsonString);
-        out.flush();        */
-    }    
+ 
       private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException{
         int ID = Integer.parseInt(request.getParameter("id"));
         System.out.println("Gelen id:" + ID);        

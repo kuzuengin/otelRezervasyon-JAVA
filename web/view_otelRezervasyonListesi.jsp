@@ -308,7 +308,7 @@
                 { "data": "soyad" },
                 { "data": "baslangicTarihi" },
                 { "data": "bitisTarihi" },                
-                { "data": "odaID",render: function(data, type) { return "<img src='fon/onayla.png' data-toggle=\"modal\" data-target=\"#modal-kayit\" onclick=\"yeni("+data+")\" />";}},
+                { "data": "odaID",render: function(data, type) { if (data==0){return "-"}else{ return "<img src='fon/onayla.png' data-toggle=\"modal\" data-target=\"#modal-kayit\" onclick=\"yeni("+data+")\" />";}}},
                 { "data": "Duzelt" },
                 { "data": "Sil" }
                 

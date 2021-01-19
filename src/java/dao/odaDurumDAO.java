@@ -27,7 +27,7 @@ public odaDurumDAO() {}
     private static final String SELECT_ALL = "SELECT * FROM odadurum ORDER BY Id;"; 
     private static final String SELECT_ID = "SELECT * FROM odadurum WHERE Id =?;";  
     private static final String SELECT_KONTROL= "SELECT * FROM odadurum WHERE aciklama =?;";  
-    private static final String UPDATE_USERS = "UPDATE odadurum set aciklama = ? WHERE Id = ?;";
+    private static final String UPDATE = "UPDATE odadurum set aciklama = ? WHERE Id = ?;";
 
     
     public List<OdaDurum> odaDurumListe() {
@@ -86,10 +86,10 @@ public List<OdaDurum> selectDurum(int ID) {
         return list;
     }
     public void odaDurumDuzelt(OdaDurum odaDurum) throws SQLException {
-        System.out.println(UPDATE_USERS);
+        System.out.println(UPDATE);
         try (           
             Connection connection = getConnection();                                
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USERS)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)) {
             preparedStatement.setString(1, odaDurum.getaciklama());
             preparedStatement.setInt(2, odaDurum.getId());
             System.out.println(preparedStatement);

@@ -8,8 +8,7 @@ package web;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dao.menu;
-import dao.odaListesiDAO;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -22,6 +21,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import dao.menu;
+import dao.odaListesiDAO;
 import model.OdaListesi;
 import model.kayitjson;
 
@@ -132,14 +133,14 @@ public class odaListesi extends HttpServlet{
             kayitvar = odaListesiDAO.odaKontrol(odaAdi);
             if (kayitvar)
             {
-                sonuc=new kayitjson("Hayır","Oda Tipi Listesi","Bu Oda Tipi Adı ile Kayıt Mevcut...");
+                sonuc=new kayitjson("Hayır","Oda Listesi","Bu Oda Tipi Adı ile Kayıt Mevcut...");
             }
             else {
                 odaListesiDAO.OdaEkle(odalist);
-                sonuc=new kayitjson("Evet","Oda Tipi Listesi","Kayıt İşlemi Tamamlanmıştır.");
+                sonuc=new kayitjson("Evet","Oda Listesi","Kayıt İşlemi Tamamlanmıştır.");
             }
         } catch (SQLException ex) {
-            sonuc=new kayitjson("Hayır","Oda Tipi Listesi","Kayıt İşlemi Yapılamadı.");
+            sonuc=new kayitjson("Hayır","Oda Listesi","Kayıt İşlemi Yapılamadı.");
         }
         
         response.setContentType("application/json;charset=UTF-8");      

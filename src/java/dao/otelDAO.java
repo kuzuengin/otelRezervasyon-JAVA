@@ -6,12 +6,10 @@
 
 package dao;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import model.OdaListesi;
@@ -175,8 +173,6 @@ public int musteriKontrol(String tel) {
         }
     }
 
-    private boolean isNullOrEmpty(int aInt) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 }
 

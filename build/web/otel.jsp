@@ -251,8 +251,9 @@ if (ekran==0){
     
     $(document).ready(function(){
 
-        document.getElementById("btarih").value = formatDate(new Date());
-        document.getElementById("starih").value = formatDate(new Date());
+        var date = new Date();
+        document.getElementById("btarih").value = formatDate(date.setDate(date.getDate() + 1));
+        document.getElementById("starih").value = formatDate(date);
         
          $('#Tablo1').DataTable( {
         "language": {

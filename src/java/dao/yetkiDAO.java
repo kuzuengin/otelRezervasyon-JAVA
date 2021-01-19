@@ -22,12 +22,6 @@ import model.Yetki;
 public class yetkiDAO extends DAO{
 public yetkiDAO() {}
     private static final String SELECT_ALL_YETKI = "SELECT * FROM yetki ORDER BY Id";      
-    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " +
-        " (?, ?, ?);";
-
-    private static final String SELECT_ALL_USERS = "select * from users";
-    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
-    private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";    
  
 public List<Yetki> liste() {
         List<Yetki> yetkiListesi = new ArrayList<>();

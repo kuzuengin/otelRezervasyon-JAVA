@@ -13,7 +13,6 @@ import dao.otelDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +21,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.MusteriListesi;
 import model.OdaListesi;
 import model.RezervasyonListesi;
@@ -152,13 +150,13 @@ public class otel extends HttpServlet{
             kayitsil = otelDAO.rezervasyonSil(KOD);
             if (kayitsil)
             {
-                sonuc=new kayitjson("Evet","Oda Listesi","Silme İşlem Tamamlanmıştır.");
+                sonuc=new kayitjson("Evet","Rezervasyon  Listesi","Silme İşlem Tamamlanmıştır.");
             }
             else {
-                sonuc=new kayitjson("Hayır","Oda Listesi","Silme İşlem Yapılamadı.");
+                sonuc=new kayitjson("Hayır","Rezervasyon Listesi","Silme İşlem Yapılamadı.");
             }
         } catch (SQLException ex) {
-            sonuc=new kayitjson("Hayır","Oda Listesi","Silme İşlem Yapılamadı.");
+            sonuc=new kayitjson("Hayır","Rezervasyon Listesi","Silme İşlem Yapılamadı.");
         }
         
         

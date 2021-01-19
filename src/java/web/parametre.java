@@ -6,9 +6,6 @@
 
 package web;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import dao.menu;
 import dao.parametreDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,7 +25,7 @@ import model.Parametre;
 public class parametre extends HttpServlet{
     private parametreDAO parametreDAO;
     private Parametre parametreList;
-    private  Gson gson;    
+   
 @Override
     public void init() {
         parametreDAO = new parametreDAO();
@@ -50,27 +47,9 @@ public class parametre extends HttpServlet{
         int kod1 = Integer.parseInt(request.getParameter("kod"));
         if (action==null) action="";
         switch (action) {
-            case "select":
-                liste(request, response,kod1);
-                break;
             case "combo":
                 listeCombo(request, response,kod1);
                 break;                
-            case "insert":
-                ekle(request, response);
-                break;
-            case "delete":
-                sil(request, response);
-                break;
-            case "edit":
-                bilgi(request, response);
-                break;
-            case "update":
-                duzelt(request, response);
-                break;
-            default:
-                anaListesi(request, response);
-                break;
         }
                 
           
@@ -81,27 +60,8 @@ public class parametre extends HttpServlet{
         dispatcher.forward(request, response);
     }    
     }   
-    private void anaListesi(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-            HttpSession session = request.getSession(true);
-            menu menu = new menu();
-            String menuHtml = menu.menuOlustur((int) session.getAttribute("otelYetki"));
-            request.setAttribute("gelenJAVA", "parametreListesi"); 
-            request.setAttribute("menuHtml", menuHtml); 
-            request.setAttribute("menuDosya", "parametreListesi.jsp"); 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/dashboard.jsp");
-            dispatcher.forward(request, response);           
-    }
-    private void liste(HttpServletRequest request, HttpServletResponse response,int kod1) throws IOException{
-        response.setContentType("application/json;charset=UTF-8");
-        List<Parametre> user =  new parametreDAO().liste(kod1);
-        gson = new GsonBuilder().create();
-        String userJsonString = gson.toJson(user);
-        PrintWriter out = response.getWriter();
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        out.print("{\"data\": "+userJsonString+"}");
-        out.flush();
-    }    
+
+  
  private void listeCombo(HttpServletRequest request, HttpServletResponse response, int kod1) throws IOException{
       response.setContentType("text/html;charset=UTF-8");
         String combo="<option value=''>Seçiniz...</option>";
@@ -114,16 +74,5 @@ public class parametre extends HttpServlet{
         out.print(combo);
         out.flush();
     }  
-    private void bilgi(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        
-    }    
-    private void ekle(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        
-    }
-    private void sil(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        
-    }
-    private void duzelt(HttpServletRequest request, HttpServletResponse response) throws IOException{
-        
-    }       
+   
 }
